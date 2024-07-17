@@ -161,12 +161,16 @@
                         $('#no_logradouro').val(jres.data.no_logradouro);
                         $('#nu_logradouro').val(jres.data.nu_logradouro);
                         $('#de_complemento').val(jres.data.de_complemento);
-                        $('#pessoa_id').val(jres.data.id);
+                        $('#id').val(jres.data.id);
 
                         $('#modalPessoa').modal('show');
                         $('#modalPessoaLabel').text('Editar Pessoa');
+                        $('#modalPessoa input').prop('disabled', false);
+                        $('#btnSalvar').show();
+
                         $('#btnSalvar').text('Salvar').off('click').on('click', function() {
-                            let formData = $('#form-pessoa').serialize();
+                            let formData = $('#formPessoa').serialize();
+
                             $.ajax({
                                 type: 'POST',
                                 url: '/database/updatePessoa.php',
@@ -174,12 +178,12 @@
                                 success: function(response) {
                                     let result = JSON.parse(response);
                                     if (result.status === 'success') {
-                                        $('#tb_pessoas').DataTable().ajax.reload();
-                                        $('#modalPessoa').modal('hide');
-                                        alert('Dados atualizados com sucesso!');
+                                        alert(result.message);
+                                        
                                     } else {
                                         alert(result.message);
                                     }
+                                    location.reload();
                                 },
                                 error: function(error) {
                                     alert('Erro ao atualizar a Pessoa.');

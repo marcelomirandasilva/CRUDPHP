@@ -2,9 +2,9 @@
 require __DIR__ . '/../database/connect.php';
 
 
-if (isset($_POST['pessoa_id'], $_POST['no_pessoa'], $_POST['nu_telefone'])) {
+if (isset($_POST['id'], $_POST['no_pessoa'], $_POST['nu_telefone'])) {
 
-	$pessoaId = $_POST['pessoa_id'];
+	$pessoaId = $_POST['id'];
 	$no_pessoa = $_POST['no_pessoa'];
 	$nu_telefone = $_POST['nu_telefone'];
 	$co_cep = $_POST['co_cep'];
